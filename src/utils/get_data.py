@@ -33,5 +33,6 @@ def get_data():
             df_all_sheets.to_csv(csv_file, index=False)
     
         print(f"Le fichier a été converti et sauvegardé sous le nom {output_csv}.")
+        return output_csv  # Retourne le chemin du fichier CSV
     else:
-        print(f"Erreur lors du téléchargement du fichier : {response.status_code}")
+        raise Exception(f"Erreur lors du téléchargement du fichier : {response.status_code}")

@@ -1,41 +1,56 @@
 import os
 import pandas as pd
-import requests
 
-def nettoyer_fichier(input_file, output_file):
+def clean_data(input_file):
     print("Le nettoyage commence...")
 
     try:
-        
+        # Chargement des données
         data = pd.read_csv(input_file)
+        print(f"Colonnes disponibles dans le fichier : {list(data.columns)}")
 
-        # Suppression des lignes avec des valeurs manquantes dans les colonnes obligatoires
+        # Création du répertoire de sortie
+        output_dir = "data/cleaned"
+        os.makedirs(output_dir, exist_ok=True)  # Crée le dossier si nécessaire
+
+        # Nettoyer les noms des colonnes pour éviter les problèmes liés aux guillemets
+        data.columns = data.columns.str.replace(r'^[\'"]|[\'"]$', '', regex=True)
+
+        # Colonnes obligatoires
         colonnes_obligatoires = [
-            'Latitude', 'Longitude', 'Total Damage Adjusted', 'Total Affected', # modife total damage
-            'Start Day', 'End Month', 'End Day'
+            'Latitude', 'Longitude', "Total Damage, Adjusted ('000 US$)",
+            'Total Affected', 'Start Day', 'End Month', 'End Day'
         ]
 
-        # Supprimer les lignes où certaines colonnes sont vides
+        # Vérification des colonnes obligatoires
+        colonnes_absentes = [col for col in colonnes_obligatoires if col not in data.columns]
+        if colonnes_absentes:
+            raise KeyError(f"Les colonnes suivantes sont absentes : {colonnes_absentes}")
+
+        # Suppression des lignes avec des valeurs manquantes
         data = data.dropna(subset=colonnes_obligatoires)
 
         print("Suppression des colonnes inutiles...")
         colonnes_a_supprimer = [
-            'External', 'Event Name', 'Historic', 'Origin', 'Associated',
-            'Last Update', 'Entry Data', 'Admin Units', 'CPI', 'Total Death',
-            'Injure', 'No. Affect', 'No. Homeless', 'Reconstruction', 'Insured',
-            'Total Damage', 'AID Contribution','External IDs', 'Reconstruction Costs, Adjusted', 
-            'Reconstruction Costs', 'Insured Damage', 'Insured Damage, Adjusted'
-            # modife AID Contribution, Reconstruction Costs, Adjusted,Reconstruction Costs , Insured Damage,Insured Damage, Adjusted, Total Damage
+            'External IDs', 'Event Name', 'Historic', 'Origin', 'Associated Types',
+            'Last Update', 'Entry Date', 'Admin Units', 'CPI', 'Total Deaths',
+            'No. Injured', 'No. Affected', 'No. Homeless', 'Reconstruction Costs (\'000 US$)',
+            'Reconstruction Costs, Adjusted (\'000 US$)', 'Insured Damage (\'000 US$)',
+            'Insured Damage, Adjusted (\'000 US$)', 'Total Damage (\'000 US$)'
         ]
         colonnes_existes = [col for col in colonnes_a_supprimer if col in data.columns]
         if colonnes_existes:
             data = data.drop(columns=colonnes_existes)
             print(f"Colonnes supprimées : {', '.join(colonnes_existes)}")
 
-        print(f"Sauvegarde du fichier nettoyé sous '{output_file}'...")
-        data.to_csv(output_file, index=False)
-        print(f"Le fichier nettoyé est sauvegardé sous '{output_file}'.")
+        # Sauvegarde des données nettoyées
+        output_csv = os.path.join(output_dir, "cleaned_data.csv")
+        data.to_csv(output_csv, index=False, encoding='utf-8')
+        print(f"Le fichier nettoyé est sauvegardé sous '{output_csv}'.")
 
+    except KeyError as e:
+        print(f"Erreur de colonnes : {e}")
+        raise
     except Exception as e:
         print(f"Une erreur s'est produite : {e}")
         raise
