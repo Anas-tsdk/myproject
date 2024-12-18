@@ -20,4 +20,4 @@ if __name__ == "__main__":
     ])
 
     # RUN APP
-    app.run_server(debug=True)
+    app.run_server(debug=True, port = 8051)
