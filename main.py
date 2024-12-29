@@ -25,7 +25,18 @@ if __name__ == "__main__":
             navbar,  # Ne pas appeler navbar() mais utiliser navbar directement
             header(),  # Ajouter le header en haut de la page
             html.Div(id="page-content", style={"flexGrow": 1, "padding": "20px"}),  # Contenu des pages
-            footer()  # Ajouter le footer en bas de la page
+            footer(),  # Ajouter le footer en bas de la page
+
+            # Ajouter un bouton radio pour choisir la colonne à afficher sur la carte
+            dcc.RadioItems(
+                id='data-toggle',
+                options=[
+                    {'label': 'Total Affected', 'value': 'Total Affected'},
+                    {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'}
+                ],
+                value='Total Affected',  # Valeur par défaut
+                labelStyle={'display': 'inline-block'}
+            ),
         ],
         style={
             'display': 'flex',
@@ -36,18 +47,19 @@ if __name__ == "__main__":
         }
     )
 
-     # Callback pour afficher le contenu en fonction de l'URL
+    # Callback combiné pour afficher le contenu de la page et la carte
     @app.callback(
         Output("page-content", "children"),
-        [Input("url", "pathname")]
+        [Input("url", "pathname"),
+         Input('data-toggle', 'value')]  # Ajout du bouton radio pour choisir la colonne
     )
-    def update_page(pathname):
+    def update_page_and_map(pathname, colonne):
+        # Logique pour le contenu de la page
         if pathname == "/stats":  # Page "Graphes"
-            return simple_page()
+            return simple_page(colonne)  # Passer la colonne choisie pour afficher la carte
         elif pathname == "/about":  # Page "À propos"
             return about_page()
-        else:  # Par défaut, page d'accueil
-            return home_page()
+
 
     # Lancer l'application Dash
     app.run_server(debug=True, port=8051)
