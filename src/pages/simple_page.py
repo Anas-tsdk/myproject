@@ -25,7 +25,8 @@ def simple_page():
                 id='data-toggle',
                 options=[
                     {'label': 'Total Affected', 'value': 'Total Affected'},
-                    {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'}
+                    {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'},
+                    {'label': 'Appeal', 'value': 'Appeal'}
                 ],
                 value='Total Affected',  # Valeur par défaut
                 labelStyle={'display': 'inline-block'}

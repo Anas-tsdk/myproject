@@ -38,10 +38,16 @@ def afficher_map(colonne):
 
    # Créer une carte centrée
     coords = (0, 0)
-    map = folium.Map(location=coords, tiles='OpenStreetMap', zoom_start=2, max_bounds=True)
+    map = folium.Map(
+        location=coords,
+        tiles='OpenStreetMap',
+        zoom_start=2,
+        min_zoom=2,  # Définir un zoom minimal
+        max_bounds=True
+    )
 
-     # Définir des limites encore plus étroites autour du monde
-    map.fit_bounds([[-60, -200], [60, 200]])  # Limiter la vue entre -60 et 60 de latitude, et entre -180 et 180 de longitude
+
+  
 
 
 
@@ -68,7 +74,7 @@ def afficher_map(colonne):
     # Retourner un composant Dash contenant la carte
     return html.Iframe(
         srcDoc=open("src/map.html", "r").read(),
-        width="100%",
+        width="60%",
         height="600px",
         style={"border": "none"}
     )
