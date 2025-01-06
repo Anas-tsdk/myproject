@@ -36,9 +36,14 @@ def afficher_map(colonne):
     # Adapter les seuils (bins) en fonction de la plage des valeurs
     threshold_scale = [min_value, max_value / 4, max_value / 2, 3 * max_value / 4, max_value]
 
-    # Créer une carte centrée
+   # Créer une carte centrée
     coords = (0, 0)
     map = folium.Map(location=coords, tiles='OpenStreetMap', zoom_start=2, max_bounds=True)
+
+     # Définir des limites encore plus étroites autour du monde
+    map.fit_bounds([[-60, -200], [60, 200]])  # Limiter la vue entre -60 et 60 de latitude, et entre -180 et 180 de longitude
+
+
 
     # Ajouter une carte choroplèthe avec une échelle définie
     folium.Choropleth(
@@ -56,13 +61,7 @@ def afficher_map(colonne):
         control_scale=True  # Ajouter un contrôle de l'échelle
     ).add_to(map)
 
-    # Rognage de la carte pour limiter l'affichage aux frontières du monde
-    map.fit_bounds([[-90, -180], [90, 180]])  # Limiter la carte aux frontières du monde
-
-    # Empêcher le zoom ou le déplacement au-delà des limites du monde
-    map.options['maxBounds'] = [[-90, -180], [90, 180]]  # Empêcher de déplacer la carte au-delà des frontières
-    map.options['zoomControl'] = False  # Empêcher le zoom
-
+  
     # Sauvegarder la carte dans un fichier HTML
     map.save(outfile="src/map.html")
 

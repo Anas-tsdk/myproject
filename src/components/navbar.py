@@ -6,7 +6,7 @@ navbar = html.Div(
     [
         html.Ul(
             [
-                html.Li(html.A("Accueil", href="/", className="nav-link"), className="nav-item"),
+                html.Li(html.A("Accueil", href="/home", className="nav-link"), className="nav-item"),
                 html.Li(html.A("Graphes", href="/stats", className="nav-link"), className="nav-item"),
                 html.Li(html.A("À propos", href="/about", className="nav-link"), className="nav-item"),
             ],

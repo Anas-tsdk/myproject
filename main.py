@@ -9,10 +9,11 @@ from src.components.navbar import navbar
 from src.pages.simple_page import simple_page
 from src.pages.home import home_page
 from src.pages.about import about_page
+from src.components.component1 import afficher_map  # Assurez-vous d'importer cette fonction
 
 if __name__ == "__main__":
-    # Créer l'application Dash
-    app = dash.Dash(__name__)
+    # Créer l'application Dash avec suppress_callback_exceptions=True
+    app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
     # Appeler get_data() et clean_data() une seule fois
     data = get_data()   
@@ -25,19 +26,8 @@ if __name__ == "__main__":
             navbar,  # Ne pas appeler navbar() mais utiliser navbar directement
             header(),  # Ajouter le header en haut de la page
             html.Div(id="page-content", style={"flexGrow": 1, "padding": "20px"}),  # Contenu des pages
-            footer(),  # Ajouter le footer en bas de la page
-
-            # Ajouter un bouton radio pour choisir la colonne à afficher sur la carte
-            dcc.RadioItems(
-                id='data-toggle',
-                options=[
-                    {'label': 'Total Affected', 'value': 'Total Affected'},
-                    {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'}
-                ],
-                value='Total Affected',  # Valeur par défaut
-                labelStyle={'display': 'inline-block'}
-            ),
-        ],
+            footer()
+        ],  # Ajouter le footer en bas de la page
         style={
             'display': 'flex',
             'flexDirection': 'column',  # Organise les éléments en colonne
@@ -50,16 +40,25 @@ if __name__ == "__main__":
     # Callback combiné pour afficher le contenu de la page et la carte
     @app.callback(
         Output("page-content", "children"),
-        [Input("url", "pathname"),
-         Input('data-toggle', 'value')]  # Ajout du bouton radio pour choisir la colonne
+        [Input("url", "pathname")]  # Vous n'avez plus besoin d'Input pour le bouton radio ici
     )
-    def update_page_and_map(pathname, colonne):
+    def update_page_and_map(pathname):
         # Logique pour le contenu de la page
         if pathname == "/stats":  # Page "Graphes"
-            return simple_page(colonne)  # Passer la colonne choisie pour afficher la carte
+            return simple_page()  # La page simple ne dépend plus du "colonne"
         elif pathname == "/about":  # Page "À propos"
             return about_page()
+        elif pathname == "/home":
+            return home_page()
 
+    # Callback pour mettre à jour la carte en fonction de la colonne sélectionnée
+    @app.callback(
+        Output("carte-container", "children"),
+        [Input('data-toggle', 'value')]  # Prendre la valeur du bouton radio
+    )
+    def update_map(colonne):
+        # Affiche la carte avec la colonne choisie
+        return afficher_map(colonne)
 
     # Lancer l'application Dash
     app.run_server(debug=True, port=8051)
