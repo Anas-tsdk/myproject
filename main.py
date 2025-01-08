@@ -11,6 +11,7 @@ from src.pages.home import home_page
 from src.pages.about import about_page
 from src.components.component1 import afficher_map  # Assurez-vous d'importer cette fonction
 from src.components.component2 import afficher_histogramme
+from src.components.component3 import afficher_camembert
 
 if __name__ == "__main__":
     # Créer l'application Dash avec suppress_callback_exceptions=True
