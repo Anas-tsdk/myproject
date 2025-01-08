@@ -1,12 +1,13 @@
 from dash import html, dcc
 from src.components.component1 import afficher_map
+from src.components.component3 import afficher_camembert
 from dash.dependencies import Input, Output
 from dash import html, dcc
 
 def simple_page():
     """
     Crée et retourne la mise en page pour la page 'simple_page',
-    incluant la carte générée par Folium et un bouton pour choisir la colonne.
+    incluant la carte générée par Folium et un bouton pour choisir la colonne, on y ajoute aussi un camembert sur les 3 grand groupes de catastrophes .
     """
 
     # Retourne la structure HTML de la page avec un bouton radio
@@ -30,6 +31,15 @@ def simple_page():
                 ],
                 value='Total Affected',  # Valeur par défaut
                 labelStyle={'display': 'inline-block'}
-            )
+            ),
+            # Section pour le graphique camembert
+            html.Div(
+                children=[
+                    html.H1("Répartition des Types de Catastrophes", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
+                    afficher_camembert()  # Afficher le graphique camembert
+                ],
+                style={"padding": "20px"}
+            ),
         ]
     )
+     
