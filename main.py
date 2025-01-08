@@ -49,7 +49,7 @@ if __name__ == "__main__":
             return simple_page()  # La page simple ne dépend plus du "colonne"
         elif pathname == "/about":  # Page "À propos"
             return about_page()
-        elif pathname == "/home":
+        elif pathname == "/home" or pathname == "/" or pathname is None:  # Accueil par défaut
             return home_page()
 
     # Callback pour mettre à jour la carte en fonction de la colonne sélectionnée
