@@ -4,13 +4,12 @@ import pandas as pd
 import requests
 import os
 
-# Fonction pour afficher la carte
 def afficher_map(colonne):
     # Charger les données
     data_file = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_file)
 
-    # Vérifier si le fichier GeoJSON existe déjà, sinon le télécharger
+     # Vérifier si le fichier GeoJSON existe déjà, sinon le télécharger
     geojson_file = "src/world_countries.json"
     if not os.path.exists(geojson_file):
         print("Téléchargement du fichier GeoJSON...")
@@ -24,8 +23,14 @@ def afficher_map(colonne):
     # Vérifier que la colonne existe dans les données
     if colonne not in data.columns:
         raise ValueError(f"La colonne '{colonne}' n'existe pas dans les données.")
+    
+    # Nettoyer les noms de colonnes pour éviter les espaces ou caractères invisibles
+    data.columns = data.columns.str.strip()
 
-     # Convertir la colonne en numérique, remplacer les erreurs par NaN, puis remplacer les NaN par 0
+    # Afficher les colonnes pour vérifier la présence de 'Country'
+    print(data.columns)
+
+    # Convertir la colonne en numérique, remplacer les erreurs par NaN, puis remplacer les NaN par 0
     data[colonne] = pd.to_numeric(data[colonne], errors='coerce')
     data[colonne] = data[colonne].fillna(0)  # Remplacer NaN par 0 (sans inplace)
 
@@ -36,7 +41,25 @@ def afficher_map(colonne):
     # Adapter les seuils (bins) en fonction de la plage des valeurs
     threshold_scale = [min_value, max_value / 4, max_value / 2, 3 * max_value / 4, max_value]
 
-   # Créer une carte centrée
+    if colonne == "Classification Key":
+        # Grouper par pays et compter les occurrences
+        storm_counts = data.groupby('Country').size().reset_index(name='Total Tempêtes')
+        
+        # Mettre à jour data avec les comptages
+        data = data.merge(storm_counts, on='Country', how='left')
+        
+        # Mettre à jour les seuils
+        min_value = storm_counts['Total Tempêtes'].min()
+        max_value = storm_counts['Total Tempêtes'].max()
+        threshold_scale = [min_value, max_value/4, max_value/2, 3*max_value/4, max_value]
+
+        print("Statistiques des tempêtes par pays :")
+        print(storm_counts.sort_values('Total Tempêtes', ascending=False))
+        print(min_value, max_value)
+
+    
+
+    # Créer la carte
     coords = (0, 0)
     map = folium.Map(
         location=coords,
@@ -46,17 +69,12 @@ def afficher_map(colonne):
         max_bounds=True
     )
 
-
-  
-
-
-
-    # Ajouter une carte choroplèthe avec une échelle définie
+    # Ajouter la carte choroplèthe en fonction de la colonne choisie
     folium.Choropleth(
         geo_data="src/world_countries.json",  # Chemin du fichier GeoJSON
         name="choropleth",
         data=data,
-        columns=["Country", colonne],  # Utiliser la colonne de la donnée passée
+        columns=["Country", "Total Tempêtes" if colonne=="Classification Key" else colonne],
         key_on="feature.properties.name",
         fill_color="Reds",  # Palette de couleurs rouges
         fill_opacity=0.7,
@@ -67,7 +85,6 @@ def afficher_map(colonne):
         control_scale=True  # Ajouter un contrôle de l'échelle
     ).add_to(map)
 
-  
     # Sauvegarder la carte dans un fichier HTML
     map.save(outfile="src/map.html")
 

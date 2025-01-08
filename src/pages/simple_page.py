@@ -20,13 +20,13 @@ def simple_page():
                 style={"padding": "20px"}
             ),
             
-            # Ajouter un bouton radio pour choisir la colonne à afficher sur la carte
+            # Ajouter un bouton radio pour choisir la colonne à afficher sur la carte 
             dcc.RadioItems(
                 id='data-toggle',
                 options=[
                     {'label': 'Total Affected', 'value': 'Total Affected'},
                     {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'},
-                    {'label': 'Appeal', 'value': 'Appeal'}
+                    {'label': 'Classification Key', 'value': 'Classification Key'}
                 ],
                 value='Total Affected',  # Valeur par défaut
                 labelStyle={'display': 'inline-block'}
