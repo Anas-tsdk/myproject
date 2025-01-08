@@ -10,6 +10,7 @@ from src.pages.simple_page import simple_page
 from src.pages.home import home_page
 from src.pages.about import about_page
 from src.components.component1 import afficher_map  # Assurez-vous d'importer cette fonction
+from src.components.component2 import afficher_histogramme
 
 if __name__ == "__main__":
     # Créer l'application Dash avec suppress_callback_exceptions=True
@@ -59,6 +60,16 @@ if __name__ == "__main__":
     def update_map(colonne):
         # Affiche la carte avec la colonne choisie
         return afficher_map(colonne)
+    
+    @app.callback(
+    Output("histogram-container", "children"),  
+    [Input("date-slider", "value")]  # Valeur du curseur
+)
+    def update_histogram(value ): 
+        
+        start_year, end_year = value # Dash fournit un seul argument sous la forme d'une liste
+        # met a jour avce les valeurs selectionnées 
+        return afficher_histogramme(start_year, end_year)
 
     # Lancer l'application Dash
     app.run_server(debug=True, port=8051)

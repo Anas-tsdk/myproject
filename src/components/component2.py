@@ -2,16 +2,17 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import html, dcc
 
-def afficher_histogramme():
+def afficher_histogramme(start_year, end_year):
  
     data_file = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_file)
 
    
     data['Start Year'] = pd.to_numeric(data['Start Year'], errors='coerce')
-
-       
-    tempetes_par_annee = data['Start Year'].value_counts().sort_index() # calculer le nombre de catastrophes par année
+    
+    data_filtered = data[(data['Start Year'] >= start_year) & (data['Start Year'] <= end_year)]  # Filtrer les données en fonction de l'intervalle d'années sélectionné
+    
+    tempetes_par_annee = data_filtered['Start Year'].value_counts().sort_index()# calculer le nombre de catastrophes par année filtrée
 
        
     fig = go.Figure(data=[go.Bar(
@@ -22,7 +23,7 @@ def afficher_histogramme():
 
        
     fig.update_layout(
-            title="Nombre de Tempêtes par Année",
+            title=f"Nombre de Tempêtes de {start_year} à {end_year}",
             xaxis_title="Année",
             yaxis_title="Nombre de Tempêtes",
             bargap=0.1  # espace entre les barres
