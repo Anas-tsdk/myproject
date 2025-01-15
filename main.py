@@ -12,6 +12,7 @@ from src.pages.about import about_page
 from src.components.component1 import afficher_map  # Assurez-vous d'importer cette fonction
 from src.components.component2 import afficher_histogramme
 from src.components.component3 import afficher_camembert
+from src.components.component4 import affiche_nuages
 
 if __name__ == "__main__":
     # Créer l'application Dash avec suppress_callback_exceptions=True
@@ -71,6 +72,13 @@ if __name__ == "__main__":
         start_year, end_year = value # Dash fournit un seul argument sous la forme d'une liste
         # met a jour avce les valeurs selectionnées 
         return afficher_histogramme(start_year, end_year)
+
+    @app.callback(
+    Output("nuage-container", "children"),
+    Input("dropdown", "value")
+)
+    def update_nuages():
+        return affiche_nuages
 
     # Lancer l'application Dash
     app.run_server(debug=True, port=8051)

@@ -1,5 +1,6 @@
 from dash import html, dcc
 from src.components.component1 import afficher_map
+from src.components.component4 import affiche_nuages
 from src.components.component3 import afficher_camembert
 from dash.dependencies import Input, Output
 from dash import html, dcc
@@ -37,6 +38,15 @@ def simple_page():
                 children=[
                     html.H1("Répartition des Types de Catastrophes", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
                     afficher_camembert()  # Afficher le graphique camembert
+                ],
+                style={"padding": "20px"}
+            ),
+
+            # Section pour le graphique camembert
+            html.Div(
+                children=[
+                    html.H1("Répartition aides", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
+                    affiche_nuages()  # Afficher le graphique camembert
                 ],
                 style={"padding": "20px"}
             ),
