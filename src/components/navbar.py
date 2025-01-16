@@ -17,6 +17,9 @@ navbar = html.Div(
                 'justifyContent': 'space-around',  # Espace les éléments de manière égale
                 'padding': '0',  # Enlève le padding de la liste
                 'margin': '0',  # Enlève la marge de la liste
+                'fontFamily': "'Helvetica Neue', Arial, sans-serif",  # police
+                'fontSize': '16px',  # Taille 
+                'fontWeight': '400',  # Poids de police (épaisseur)
             }
         )
     ],
