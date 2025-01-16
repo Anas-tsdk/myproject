@@ -10,7 +10,7 @@ def afficher_camembert():
     categories = ['Geophysical', 'Hydrological', 'Meteorological']# fitre les trois types de catastrophes
     data_filtered = data[data['Disaster Subgroup'].isin(categories)]
     
-    count_by_type = data_filtered['Disaster Subgroup'].value_counts() # calcul le nombre de catastrophe pour chaque cat�gorie
+    count_by_type = data_filtered['Disaster Subgroup'].value_counts() # calcul le nombre de catastrophe pour chaque categorie
 
     # camembert avec Plotly
     colors = ['#2C3E50', '#3498DB', '#1ABC9C']

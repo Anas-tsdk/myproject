@@ -59,6 +59,8 @@ flowchart TD
 ```
 
 Notre programme est de type impératif, le code est structuré en fonctions appelées depuis le programme principal.
+
+
 ## Rapport d'analyse
 met en avant les principales conclusions extraites des données
 
@@ -66,3 +68,19 @@ met en avant les principales conclusions extraites des données
 ## Copyright
 
 Nous déclarons sur l'honneur que le code fourni a été produit par nous même, à l'exception des lignes ci-dessous : 
+ 
+Pour le component 2 et 3 nous avons repris quelques morceaux de code de ces sites pour faire les figures :
+https://moncoachdata.com/tutos/diagrammes-de-base-avec-plotly/
+https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html
+
+Pour remplacer les guillemets dans nos data et remplacer les noms des pays qui n'étaient pas pareil que le JSON :
+https://stackoverflow.com/questions/41403301/replace-values-in-dataframe-python
+problème csv json map : chat gpt (pas de copier/coller) a expliquer 
+
+
+main check call : https://docs.python.org/3/library/subprocess.html#subprocess.check_call
+https://www.digitalocean.com/community/tutorials/how-to-use-subprocess-to-run-external-programs-in-python-3-fr
+
+Pour le style de nos pages nous nous sommes inspirées de ces morceaux de codes : https://medium.com/plotly/how-to-create-a-beautiful-interactive-dashboard-layout-in-python-with-plotly-dash-a45c57bb2f3c
+
+Le reste du code à été inspiré par le cours.
