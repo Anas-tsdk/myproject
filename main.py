@@ -14,6 +14,27 @@ from src.components.component2 import afficher_histogramme
 from src.components.component3 import afficher_camembert
 from src.components.component4 import affiche_nuages
 
+def install_requirements():
+    """Vérifie et installe les dépendances manquantes"""
+    print("Vérification des dépendances...")
+    try:
+        with open('requirements.txt') as f:
+            required = {}
+            for line in f:
+                if '==' in line:
+                    package, version = line.strip().split('==')
+                    required[package] = version
+
+        for package, version in required.items():
+            try:
+                importlib.import_module(package)
+            except ImportError:
+                print(f"Installation de {package}...")
+                subprocess.check_call([sys.executable, "-m", "pip", "install", f"{package}=={version}"])
+    except FileNotFoundError:
+        print("Erreur: Le fichier requirements.txt n'a pas été trouvé.")
+        sys.exit(1)
+
 if __name__ == "__main__":
     # Créer l'application Dash avec suppress_callback_exceptions=True
     app = dash.Dash(__name__, suppress_callback_exceptions=True)
