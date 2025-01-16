@@ -13,6 +13,30 @@ from src.components.component1 import afficher_map  # Assurez-vous d'importer ce
 from src.components.component2 import afficher_histogramme
 from src.components.component3 import afficher_camembert
 from src.components.component4 import affiche_nuages
+import webbrowser
+import threading
+import time
+
+def install_requirements():
+    """Vérifie et installe les dépendances manquantes"""
+    print("Vérification des dépendances...")
+    try:
+        with open('requirements.txt') as f:
+            required = {}
+            for line in f:
+                if '==' in line:
+                    package, version = line.strip().split('==')
+                    required[package] = version
+
+        for package, version in required.items():
+            try:
+                importlib.import_module(package)
+            except ImportError:
+                print(f"Installation de {package}...")
+                subprocess.check_call([sys.executable, "-m", "pip", "install", f"{package}=={version}"])
+    except FileNotFoundError:
+        print("Erreur: Le fichier requirements.txt n'a pas été trouvé.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     # Créer l'application Dash avec suppress_callback_exceptions=True
@@ -73,12 +97,13 @@ if __name__ == "__main__":
         # met a jour avce les valeurs selectionnées 
         return afficher_histogramme(start_year, end_year)
 
-    @app.callback(
-    Output("nuage-container", "children"),
-    Input("dropdown", "value")
-)
-    def update_nuages():
-        return affiche_nuages
-
+    def open_browser():
+        time.sleep(1.5)
+        webbrowser.open('http://127.0.0.1:8051/')
+    # Lancer le navigateur
+    threading.Timer(1.5, open_browser).start()
+    # Lancer l'application
+    print("Lancement de l'application...")
+   
     # Lancer l'application Dash
     app.run_server(debug=True, port=8051)
