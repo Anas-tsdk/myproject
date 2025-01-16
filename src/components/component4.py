@@ -15,7 +15,7 @@ def affiche_nuages():
 
     fig = px.scatter(data, x="Total Affected", 
                      y="Total Damage, Adjusted ('000 US$)", 
-                     title="Nuage de points : Impact humain vs Aide reçue",
+                     title="Impact humain vs Aide reçue",
                      labels={"Total Affected": "Total Affected", "Total Damage, Adjusted ('000 US$)": "Total Damage, Adjusted ('000 US$)"}, 
                      color = 'OFDA/BHA Response', 
                      symbol = 'Disaster Type')

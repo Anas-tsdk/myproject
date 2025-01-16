@@ -52,8 +52,8 @@ def home_page():
             ),
             
             html.P([
-                "Découvrez l'impact des catastrophes naturelles à travers le monde. ",
-                "Cette visualisation interactive vous permet de choisir une pèriode qui vous intéresse."
+                "Ce tableau de bord interactif permet d'explorer l'impact des catastrophes naturelles à l'échelle mondiale. À travers une carte choroplèthe, vous pouvez visualiser les régions les plus affectées en fonction de plusieurs critères, tels que le nombre de personnes touchées, les dommages économiques ou la fréquence des tempêtes. ",
+                 "De plus, un histogramme présente la répartition des catastrophes naturelles sur une période donnée. Vous pouvez personnaliser la période d'analyse en ajustant les curseurs. Ce tableau de bord contient également un graphique qui présente la répartition des différents types de catastrophes et un scatter plot pour évaluer l'impact des tempêtes sur les populations, ainsi que les aides qu'elles ont reçues."
             ], style=description_style),
 
             html.Div([

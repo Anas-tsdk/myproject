@@ -31,8 +31,14 @@ def simple_page():
                     {'label': 'Classification Key', 'value': 'Classification Key'}
                 ],
                 value='Total Affected',  # Valeur par défaut
-                labelStyle={'display': 'inline-block'}
-            ),
+                labelStyle={'display': 'block', 'marginBottom': '10px'},  # Afficher les labels les uns en dessous des autres
+                style={
+                    'position': 'absolute',  # Utiliser absolute pour le positionnement
+                    'top': '400px',  # Vous pouvez ajuster cette valeur selon vos besoins
+                    'right': '250px',  # Positionner le conteneur des boutons à droite
+                    'width': 'auto'
+                }
+               ),
             # Section pour le graphique camembert
             html.Div(
                 children=[
@@ -42,11 +48,11 @@ def simple_page():
                 style={"padding": "20px"}
             ),
 
-            # Section pour le graphique camembert
+            # Section pour le graphique nuage de points (scatterplot)
             html.Div(
                 children=[
-                    html.H1("Répartition aides", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
-                    affiche_nuages()  # Afficher le graphique camembert
+                    html.H1("Impact humain vs Aide reçue", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
+                    affiche_nuages()  # Afficher le graphique nuage de point
                 ],
                 style={"padding": "20px"}
             ),
