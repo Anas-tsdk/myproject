@@ -6,23 +6,41 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 
 def simple_page():
-    """
-    Crée et retourne la mise en page pour la page 'simple_page',
-    incluant la carte générée par Folium et un bouton pour choisir la colonne, on y ajoute aussi un camembert sur les 3 grand groupes de catastrophes .
-    """
+    # Styles communs
+    common_font = "'Helvetica Neue', Arial, sans-serif"
+    title_style = {
+        "color": "#2C3E50",
+        "fontSize": "32px",
+        "fontFamily": common_font,
+        "fontWeight": "500",
+        "textAlign": "center",
+        "marginBottom": "30px",
+        "letterSpacing": "0.5px"
+    }
+    section_style = {
+        "marginBottom": "50px",
+        "padding": "20px",
+        "backgroundColor": "white",
+        "borderRadius": "8px",
+        "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
+    }
+    radio_style = {
+        "backgroundColor": "white",
+        "padding": "15px",
+        "borderRadius": "8px",
+        "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
+        "position": "absolute",
+        "top": "400px",
+        "right": "190px",
+        "fontFamily": common_font,
+        "color": "#2C3E50"
+    }
 
-    # Retourne la structure HTML de la page avec un bouton radio
-    return html.Div(
-        children=[
-            html.Div(
-                children=[
-                    html.H1("Carte du Monde", style={"textAlign": "center", "marginBottom": "20px"}),  # Titre
-                    html.Div(id="carte-container"),  # Conteneur de la carte, mis à jour dynamiquement
-                ],
-                style={"padding": "20px"}
-            ),
-            
-            # Ajouter un bouton radio pour choisir la colonne à afficher sur la carte 
+    return html.Div([
+        # Section Carte
+        html.Div([
+            html.H1("Carte du Monde", style=title_style),
+            html.Div(id="carte-container"),
             dcc.RadioItems(
                 id='data-toggle',
                 options=[
@@ -30,32 +48,30 @@ def simple_page():
                     {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'},
                     {'label': 'Classification Key', 'value': 'Classification Key'}
                 ],
-                value='Total Affected',  # Valeur par défaut
-                labelStyle={'display': 'block', 'marginBottom': '10px'},  # Afficher les labels les uns en dessous des autres
-                style={
-                    'position': 'absolute',  # Utiliser absolute pour le positionnement
-                    'top': '400px',  # Vous pouvez ajuster cette valeur selon vos besoins
-                    'right': '250px',  # Positionner le conteneur des boutons à droite
-                    'width': 'auto'
-                }
-               ),
-            # Section pour le graphique camembert
-            html.Div(
-                children=[
-                    html.H1("Répartition des Types de Catastrophes", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
-                    afficher_camembert()  # Afficher le graphique camembert
-                ],
-                style={"padding": "20px"}
-            ),
+                value='Total Affected',
+                labelStyle={'display': 'block', 'marginBottom': '10px','cursor': 'pointer','fontFamily': common_font},# Afficher les labels
+                style=radio_style
+            )
+        ], style=section_style),
 
-            # Section pour le graphique nuage de points (scatterplot)
-            html.Div(
-                children=[
-                    html.H1("Impact humain vs Aide reçue", style={"textAlign": "center", "marginTop": "50px"}),  # Titre
-                    affiche_nuages()  # Afficher le graphique nuage de point
-                ],
-                style={"padding": "20px"}
-            ),
-        ]
-    )
-     
+        # Section Camembert
+        html.Div([
+            html.H1("Répartition des Types de Catastrophes", style=title_style),
+            afficher_camembert() # Afficher le graphique camembert
+        ], 
+        style=section_style
+        ),
+
+        # Section pour le graphique nuage de points (scatterplot)
+        html.Div([
+            html.H1("Impact humain vs Aide reçue", style=title_style),
+            affiche_nuages() # Afficher le graphique nuage de point
+        ], style=section_style)
+    ], style={
+        "maxWidth": "1200px",
+        "margin": "0 auto",
+        "padding": "20px",
+        "backgroundColor": "#F8F9FA",
+        "minHeight": "100vh",
+        "fontFamily": common_font
+    })
