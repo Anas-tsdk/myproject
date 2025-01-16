@@ -3,7 +3,7 @@
 
 ## User Guide
 
-Pour déployer et utiliser le dashboard il faut lancer cette commande dans le terminal:
+Pour déployer et utiliser le dashboard il faut lancer cette commande dans le terminal :
 
 ```sh
 python main.py
@@ -11,11 +11,11 @@ python main.py
 
 ## Data
 
-Nous avons utilisé des données provenant de l'[EM-DAT](https://www.emdat.be/) qui contient une base de données sur les catastrophes dans le monde entier. Les données ont été diffusées par le Centre de recherche sur l'épidémiologie des catastrophes (CRED). Cependant les données ne pouvaient pas être téléchargé à partir de notre programme car il fallait se connecter à un compte. Nous avons donc télécharger les données puis mis dans un git pour pouvoir les télécharger à partir de cet endroit lorque l'on lance le programme (sous l'accord de Monsieur PERRET).
+Nous avons utilisé des données provenant de l'[EM-DAT](https://www.emdat.be/) qui contient une base de données sur les catastrophes dans le monde entier. Les données ont été diffusées par le Centre de recherche sur l'épidémiologie des catastrophes (CRED). Cependant les données ne pouvaient pas être téléchargé à partir de notre programme car une connexion à un compte était nécessaire. Nous avons donc téléchargé les données manuellement, puis les avons intégrées dans un dépôt Git afin de pouvoir les télécharger directement lors de l'exécution du programme (sous l'accord de Monsieur PERRET).
 
 
 ## Developer Guide
-faire graphique architecture
+Voici le diagramme de l'architecture de notre application réalisé avec Mermaid :
 ```mermaid
 flowchart TD
     %% Structure principale
@@ -57,6 +57,8 @@ flowchart TD
     H3 --> J2
     H4 --> J4
 ```
+
+Notre programme est de type impératif, le code est structuré en fonctions appelées depuis le programme principal.
 ## Rapport d'analyse
 met en avant les principales conclusions extraites des données
 
