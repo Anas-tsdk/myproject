@@ -70,19 +70,19 @@ Pour les degats totaux la chine le japon et les etats unis
 Pour le graphique en camembert, nous remarquons que le type de tempetes le plus frequants est hydrologique ou geophysique (expliquer) mais tres peu meteoroliguqe
 Pour finir avec le nuage de points, nous remarquons que les pays ayant le plus d'aide lors d'une tempete sont ceux qui ont bcp de degat, le flood faisant le plus de mort et le earthtaque le plus de degat 
 
- 1. Histogramme : Nombre de Tempêtes par Pays (2000-2023)
+ _1. Histogramme : Nombre de Tempêtes par Pays (2000-2023)_
 
 L'histogramme révèle que, sur la période de 2000 à 2023, la **Chine** est le pays ayant enregistré le plus grand nombre de tempêtes, suivie par des pays comme les **Philippines**, l'**Indonésie**, et les **États-Unis**. Ces pays sont régulièrement confrontés à des phénomènes météorologiques extrêmes, principalement en raison de leur situation géographique et de leur vulnérabilité aux tempêtes.
 
- 2. Carte Géographique : Nombre de Personnes Affectées (Morts, Blessés)
+ _2. Carte Géographique : Nombre de Personnes Affectées (Morts, Blessés)_
 
 La carte montre que les pays les plus affectés par les tempêtes en termes de pertes humaines (morts, blessés) sont principalement situés en **Asie de l'Est**, notamment la **Chine**, l'**Inde**, et les **Philippines**. Ces régions, en particulier les îles comme les Philippines, sont régulièrement exposées à des tempêtes puissantes qui causent des dégâts humains considérables. La densité de population dans ces pays amplifie l'impact humain de ces catastrophes naturelles.
 
- 3. Dégâts Totaux : Pays les Plus Touchés
+ _3. Dégâts Totaux : Pays les Plus Touchés_
 
 Les dégâts économiques causés par les tempêtes sont particulièrement élevés dans des pays comme la **Chine**, le **Japon** et les **États-Unis**. Ces pays subissent des dommages matériels massifs en raison de la fréquence et de la violence des tempêtes qui les frappent, notamment des typhons, des cyclones, et des ouragans. En raison de leur position géographique et de leur taille, ces pays sont à la fois des zones de forte activité cyclonique et des zones économiques de grande importance, ce qui amplifie les conséquences économiques des catastrophes.
 
- 4. Graphique en Camembert : Types de Tempêtes
+ _4. Graphique en Camembert : Types de Tempêtes_
 
 Le graphique en camembert montre que les **tempêtes hydrologiques** et **géophysiques** sont les plus fréquentes. Ces deux types de tempêtes comprennent :
 
@@ -91,13 +91,14 @@ Le graphique en camembert montre que les **tempêtes hydrologiques** et **géoph
 
 À l'opposé, les **tempêtes météorologiques** (principalement les cyclones et les ouragans) sont moins fréquentes, mais elles peuvent être particulièrement violentes lorsqu'elles se produisent.
 
- 5. Nuage de Points : Impact Humain vs Aide Internationale
+ _5. Nuage de Points : Impact Humain vs Aide Internationale_
 
 Le nuage de points met en évidence une corrélation entre les **dégâts matériels** et l'**aide internationale**. Les pays qui subissent les plus grandes pertes matérielles (comme la **Chine** et les **États-Unis**) reçoivent proportionnellement plus d'aide internationale. En revanche, les pays avec moins de dégâts matériels mais un nombre élevé de victimes humaines, comme les **Philippines**, reçoivent parfois moins de soutien, bien que leur besoin d'aide humanitaire soit tout aussi pressant.
 
 En ce qui concerne les types de tempêtes, les **inondations** sont celles qui provoquent le plus de pertes humaines, tandis que les **tremblements de terre** génèrent les plus grands dégâts matériels, en raison de leur capacité à détruire des infrastructures massives en un court laps de temps.
 
-Conclusion : Impact des Tempêtes et Réchauffement Climatique
+_Conclusion : Impact des Tempêtes et Réchauffement Climatique_
+
 Ainsi, les données montrent que les tempêtes ont des effets dévastateurs sur les populations et les économies, en particulier dans les régions vulnérables d'Asie de l'Est. Cependant, il est important de noter que, bien que la fréquence des tempêtes semble stable ou variable dans certaines régions, le réchauffement climatique pourrait jouer un rôle important dans l'intensification de ces phénomènes. 
 
 ## Copyright
