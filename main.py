@@ -16,8 +16,10 @@ from src.components.component4 import affiche_nuages
 import webbrowser
 import threading
 import time
+from config import *
 
 def install_requirements():
+    
     """Vérifie et installe les dépendances manquantes"""
     print("Vérification des dépendances...")
     try:
@@ -52,16 +54,11 @@ if __name__ == "__main__":
             dcc.Location(id="url", refresh=False),  # Permet de capturer l'URL
             navbar,  # Ne pas appeler navbar() mais utiliser navbar directement
             header(),  # Ajouter le header en haut de la page
-            html.Div(id="page-content", style={"flexGrow": 1, "padding": "20px"}),  # Contenu des pages
+            html.Div(id="page-content", style=PAGE_CONTENT_STYLE), 
             footer()
         ],  # Ajouter le footer en bas de la page
-        style={
-            'display': 'flex',
-            'flexDirection': 'column',  # Organise les éléments en colonne
-            'minHeight': '100vh',  # Occupe toute la hauteur de la fenêtre du navigateur
-            'height': '100%',  # Assurez-vous que le conteneur parent occupe bien toute la hauteur
-            'justifyContent': 'space-between'  # Cela force le footer à se placer en bas
-        }
+        style=APP_LAYOUT_STYLE
+        
     )
 
     # Callback combiné pour afficher le contenu de la page et la carte
@@ -70,12 +67,21 @@ if __name__ == "__main__":
         [Input("url", "pathname")]  # Vous n'avez plus besoin d'Input pour le bouton radio ici
     )
     def update_page_and_map(pathname):
+        """
+        Met à jour le contenu de la page selon l'URL.
+
+        Args:
+        pathname (str): Chemin de l'URL
+
+         Returns:
+        html.Div: Contenu de la page correspondante
+    """
         # Logique pour le contenu de la page
-        if pathname == "/stats":  # Page "Graphes"
-            return simple_page()  # La page simple ne dépend plus du "colonne"
-        elif pathname == "/about":  # Page "À propos"
+        if pathname == ROUTES['STATS']:
+            return simple_page()
+        elif pathname == ROUTES['ABOUT']:
             return about_page()
-        elif pathname == "/home" or pathname == "/" or pathname is None:  # Accueil par défaut
+        elif pathname in ROUTES['HOME']:
             return home_page()
 
     # Callback pour mettre à jour la carte en fonction de la colonne sélectionnée
@@ -84,6 +90,16 @@ if __name__ == "__main__":
         [Input('data-toggle', 'value')]  # Prendre la valeur du bouton radio
     )
     def update_map(colonne):
+        """
+        Met à jour la carte selon la colonne sélectionnée.
+
+        Args:
+        colonne (str): Nom de la colonne à afficher
+
+        Returns:
+        html.Div: Carte mise à jour
+         """
+
         # Affiche la carte avec la colonne choisie
         return afficher_map(colonne)
     
@@ -92,18 +108,32 @@ if __name__ == "__main__":
     [Input("date-slider", "value")]  # Valeur du curseur
 )
     def update_histogram(value ): 
+        """
+         Met à jour l'histogramme selon la période sélectionnée.
+
+         Args:
+        value (list): [année_début, année_fin]
+
+         Returns:
+        html.Div: Histogramme mis à jour
+        """
         
         start_year, end_year = value # Dash fournit un seul argument sous la forme d'une liste
         # met a jour avce les valeurs selectionnées 
         return afficher_histogramme(start_year, end_year)
 
     def open_browser():
-        time.sleep(1.5)
-        webbrowser.open('http://127.0.0.1:8051/')
+        """
+        Ouvre le navigateur web vers l'application après un délai.
+        """
+        
+    time.sleep(BROWSER_DELAY)
+    webbrowser.open(APP_URL)
     # Lancer le navigateur
-    threading.Timer(1.5, open_browser).start()
+    threading.Timer(BROWSER_DELAY, open_browser).start()
     # Lancer l'application
     print("Lancement de l'application...")
    
     # Lancer l'application Dash
-    app.run_server(debug=True, port=8051)
+    app.run_server(debug=APP_DEBUG, port=APP_PORT)
+
