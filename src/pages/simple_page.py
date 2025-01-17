@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 
 def simple_page():
+
     # Styles communs
     common_font = "'Helvetica Neue', Arial, sans-serif"
     title_style = {
@@ -31,7 +32,7 @@ def simple_page():
         "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
         "position": "absolute",
         "top": "400px",
-        "right": "190px",
+        "right": "90px",
         "fontFamily": common_font,
         "color": "#2C3E50"
     }
@@ -44,10 +45,10 @@ def simple_page():
             dcc.RadioItems(
                 id='data-toggle',
                 options=[
-                    {'label': 'Total Affected', 'value': 'Total Affected'},
-                    {'label': 'Total Damage', 'value': 'Total Damage, Adjusted (\'000 US$)'},
-                    {'label': 'Classification Key', 'value': 'Classification Key'}
-                ],
+                    {'label': 'Total Affecté', 'value': 'Total Affected'},
+                    {'label': 'Dégâts Totaux en $', 'value': 'Total Damage Adjusted 000 US'},
+                    {'label': 'Nombre de Tempêtes', 'value': 'Classification Key'}
+                ], 
                 value='Total Affected',
                 labelStyle={'display': 'block', 'marginBottom': '10px','cursor': 'pointer','fontFamily': common_font},# Afficher les labels
                 style=radio_style

@@ -9,16 +9,25 @@ def clean_data(input_file):
         data = pd.read_csv(input_file)
         print(f"Colonnes disponibles dans le fichier : {list(data.columns)}")
 
+        # Nettoyer les colonnes pour enlever les guillemets et caractères spéciaux
+        data.columns = data.columns.str.strip().str.replace(r"[^\w\s]", "", regex=True) # Supprimer les caractères spéciaux
+        print(f"Colonnes après nettoyage : {list(data.columns)}")
+
         # Création du répertoire de sortie
         output_dir = "data/cleaned"
         os.makedirs(output_dir, exist_ok=True)  # Crée le dossier si nécessaire
 
-        # Nettoyer les noms des colonnes pour éviter les problèmes liés aux guillemets
-        data.columns = data.columns.str.replace(r'^[\'"]|[\'"]$', '', regex=True)
+        # Renommer la colonne spécifiée (si nécessaire)
+        column_mapping = {
+            # Exemple de renaming si nécessaire
+            # 'ancien_nom': 'nouveau_nom'
+        }
+        data.rename(columns=column_mapping, inplace=True)
+        print(f"Colonnes après renommage : {list(data.columns)}")
 
         # Colonnes obligatoires
         colonnes_obligatoires = [
-            'Latitude', 'Longitude', "Total Damage, Adjusted ('000 US$)",
+            'Latitude', 'Longitude', 'Total Damage Adjusted 000 US',
             'Total Affected', 'Start Day', 'End Month', 'End Day'
         ]
 
@@ -34,9 +43,9 @@ def clean_data(input_file):
         colonnes_a_supprimer = [
             'External IDs', 'Event Name', 'Historic', 'Origin', 'Associated Types',
             'Last Update', 'Entry Date', 'Admin Units', 'CPI', 'Total Deaths',
-            'No. Injured', 'No. Affected', 'No. Homeless', 'Reconstruction Costs (\'000 US$)',
-            'Reconstruction Costs, Adjusted (\'000 US$)', 'Insured Damage (\'000 US$)',
-            'Insured Damage, Adjusted (\'000 US$)', 'Total Damage (\'000 US$)'
+            'No. Injured', 'No. Affected', 'No. Homeless', 'Reconstruction Costs (000 US$)',
+            'Reconstruction Costs, Adjusted (000 US$)', 'Insured Damage (000 US$)',
+            'Insured Damage, Adjusted (000 US$)', 'Total Damage (000 US$)'
         ]
         colonnes_existes = [col for col in colonnes_a_supprimer if col in data.columns]
         if colonnes_existes:
