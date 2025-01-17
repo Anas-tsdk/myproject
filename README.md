@@ -1,9 +1,9 @@
 # README
-## _TempÍtes et SantÈ Publique_
+## _Temp√™tes et Sant√© Publique_
 
 ## User Guide
 
-Pour dÈployer et utiliser le dashboard il faut lancer cette commande dans le terminal :
+Pour d√©ployer et utiliser le dashboard il faut lancer cette commande dans le terminal :
 
 ```sh
 python main.py
@@ -11,11 +11,11 @@ python main.py
 
 ## Data
 
-Nous avons utilisÈ des donnÈes provenant de l'[EM-DAT](https://www.emdat.be/) qui contient une base de donnÈes sur les catastrophes dans le monde entier. Les donnÈes ont ÈtÈ diffusÈes par le Centre de recherche sur l'ÈpidÈmiologie des catastrophes (CRED). Cependant les donnÈes ne pouvaient pas Ítre tÈlÈchargÈ ‡ partir de notre programme car une connexion ‡ un compte Ètait nÈcessaire. Nous avons donc tÈlÈchargÈ les donnÈes manuellement, puis les avons intÈgrÈes dans un dÈpÙt Git afin de pouvoir les tÈlÈcharger directement lors de l'exÈcution du programme (sous l'accord de Monsieur PERRET).
+Nous avons utilis√© des donn√©es provenant de l'[EM-DAT](https://www.emdat.be/) qui contient une base de donn√©es sur les catastrophes dans le monde entier. Les donn√©es ont √©t√© diffus√©es par le Centre de recherche sur l'√©pid√©miologie des catastrophes (CRED). Cependant les donn√©es ne pouvaient pas √™tre t√©l√©charg√© √† partir de notre programme car une connexion √† un compte √©tait n√©cessaire. Nous avons donc t√©l√©charg√© les donn√©es manuellement, puis les avons int√©gr√©es dans un d√©p√¥t Git afin de pouvoir les t√©l√©charger directement lors de l'ex√©cution du programme (sous l'accord de Monsieur PERRET).
 
 
 ## Developer Guide
-Voici le diagramme de l'architecture de notre application rÈalisÈ avec Mermaid :
+Voici le diagramme de l'architecture de notre application r√©alis√© avec Mermaid :
 ```mermaid
 flowchart TD
     %% Structure principale
@@ -58,29 +58,28 @@ flowchart TD
     H4 --> J4
 ```
 
-Notre programme est de type impÈratif, le code est structurÈ en fonctions appelÈes depuis le programme principal.
+Notre programme est de type imp√©ratif, le code est structur√© en fonctions appel√©es depuis le programme principal.
 
 
 ## Rapport d'analyse
-met en avant les principales conclusions extraites des donnÈes
+met en avant les principales conclusions extraites des donn√©es
 
 
 ## Copyright
 
-Nous dÈclarons sur l'honneur que le code fourni a ÈtÈ produit par nous mÍme, ‡ l'exception des lignes ci-dessous : 
+Nous d√©clarons sur l'honneur que le code fourni a √©t√© produit par nous m√™me, √† l'exception des lignes ci-dessous : 
  
-Pour le component 2 et 3 nous avons repris quelques morceaux de code de ces sites pour faire les figures :
+Pour les components 2 et 3 nous avons repris quelques morceaux de code de ces sites pour faire les figures :
 https://moncoachdata.com/tutos/diagrammes-de-base-avec-plotly/
 https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html
 
-Pour remplacer les guillemets dans nos data et remplacer les noms des pays qui n'Ètaient pas pareil que le JSON :
+Pour remplacer les guillemets dans nos data et remplacer les noms des pays qui n'√©taient pas pareil que le JSON :
 https://stackoverflow.com/questions/41403301/replace-values-in-dataframe-python
-problËme csv json map : chat gpt (pas de copier/coller) a expliquer 
+Nous avons utilis√© chatgpt pour comprendre le probl√®me d'incompatibilit√© entre les noms des pays du CSV et du JSON pour afficher les donn√©es sur la map car il nous manquait beaucoup de pays sur l'affichage de la map. Nous n'avons pas copi√© le code.
 
-
-main check call : https://docs.python.org/3/library/subprocess.html#subprocess.check_call
+Pour la ligne sur le subprocess dans le main : https://docs.python.org/3/library/subprocess.html#subprocess.check_call
 https://www.digitalocean.com/community/tutorials/how-to-use-subprocess-to-run-external-programs-in-python-3-fr
 
-Pour le style de nos pages nous nous sommes inspirÈes de ces morceaux de codes : https://medium.com/plotly/how-to-create-a-beautiful-interactive-dashboard-layout-in-python-with-plotly-dash-a45c57bb2f3c
+Pour le style de nos pages nous nous sommes inspir√©es de ces morceaux de codes : https://medium.com/plotly/how-to-create-a-beautiful-interactive-dashboard-layout-in-python-with-plotly-dash-a45c57bb2f3c
 
-Le reste du code ‡ ÈtÈ inspirÈ par le cours.
+Le reste du code √† √©t√© inspir√© par le cours.
