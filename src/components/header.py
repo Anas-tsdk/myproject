@@ -2,6 +2,12 @@
 
 from dash import html
 def header():
+    """
+    Crée l'en-tête du dashboard.
+
+    Returns:
+        html.Header: Composant header avec titre et sous-titre
+    """
     header_style = {
         "backgroundColor": "#F8F9FA",
         "padding": "40px 20px",

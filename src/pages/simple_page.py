@@ -7,6 +7,13 @@ from dash import html, dcc
 
 def simple_page():
 
+    """
+    Crée la page des visualisations avec composants interactifs.
+
+    Returns:
+        html.Div: Composant contenant les trois visualisations 
+    """
+
     # Styles communs
     common_font = "'Helvetica Neue', Arial, sans-serif"
     title_style = {

@@ -3,6 +3,12 @@
 from dash import html
 
 def footer():
+    """
+    Crée le footer avec copyright et contacts.
+
+    Returns:
+        html.Footer: Composant footer avec informations de contact
+    """
     return html.Footer(
         children=[
             html.Div(

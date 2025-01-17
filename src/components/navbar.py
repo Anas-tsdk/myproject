@@ -1,7 +1,12 @@
 import dash
 from dash import html
 
-# Structure de la barre de navigation avec des liens horizontaux et un encadré
+"""
+Barre de navigation du dashboard.
+
+Définit une navbar avec des liens vers les différentes pages :
+Accueil, Graphes, À propos.
+"""
 navbar = html.Div(
     [
         html.Ul(

@@ -3,6 +3,12 @@ import plotly.graph_objects as go
 from dash import html, dcc
 
 def afficher_camembert():
+    """
+    Crée un graphique en camembert des types de catastrophes.
+
+    Returns:
+        html.Div: Composant Dash contenant le camembert
+    """
     
     data_file = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_file)

@@ -4,7 +4,15 @@ from io import BytesIO
 import os
 
 def get_data():
-    
+    """
+    Télécharge et convertit les données Excel en CSV.
+
+    Returns:
+        str: Chemin du fichier CSV créé
+
+    Raises:
+        Exception: Si le téléchargement échoue
+    """
     # URL du fichier .xlsx sur GitHub
     url = "https://github.com/InesR91/data_storm_EM_DAT/raw/main/public_emdat_2024-12-03.xlsx"
 

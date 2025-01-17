@@ -1,6 +1,12 @@
 from dash import html, dcc
 
 def home_page():
+    """et
+    Crée la page d'accueil avec description.
+
+    Returns:
+        html.Div: Composant contenant la présentation et les éléments interactifs
+    """
     # Styles communs
     common_font = "'Helvetica Neue', Arial, sans-serif"
     

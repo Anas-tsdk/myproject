@@ -1,6 +1,12 @@
 from dash import html
 
 def about_page():
+    """
+    Crée la page 'À propos' avec sections structurées et styles définis.
+
+    Returns:
+        html.Div: Composant contenant les sections d'information stylisées
+    """
     # Style commun pour tout le site
     common_font = "'Helvetica Neue', Arial, sans-serif"
 
