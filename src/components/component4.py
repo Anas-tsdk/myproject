@@ -3,6 +3,12 @@ import plotly.express as px
 from dash import html, dcc
 
 def affiche_nuages():
+    """
+    Crée un nuage de points croisant impact humain et dommages financiers.
+
+    Returns:
+        html.Div: Composant Dash avec le graphique scatter plot
+    """
 
     data_path = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_path)

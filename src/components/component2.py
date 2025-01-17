@@ -2,38 +2,62 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import html, dcc
 
+data_file = "data/cleaned/cleaned_data.csv"
+data_global = pd.read_csv(data_file)
+data_global['Start Year'] = pd.to_numeric(data_global['Start Year'], errors='coerce')
+
+# définir les échelles fixes
+TOUS_LES_PAYS = sorted(data_global['Country'].unique())
+MAX_TEMPETES_GLOBAL = data_global['Country'].value_counts().max()
+
 def afficher_histogramme(start_year, end_year):
- 
-    data_file = "data/cleaned/cleaned_data.csv"
-    data = pd.read_csv(data_file)
+    """
+    Crée un histogramme des tempêtes par pays.
 
-   
-    data['Start Year'] = pd.to_numeric(data['Start Year'], errors='coerce')
-    
-    data_filtered = data[(data['Start Year'] >= start_year) & (data['Start Year'] <= end_year)]  # Filtrer les données en fonction de l'intervalle d'années sélectionné
-    
-    tempetes_par_annee = data_filtered['Start Year'].value_counts().sort_index()# calculer le nombre de catastrophes par année filtrée
+    Args:
+        start_year (int): Année de début
+        end_year (int): Année de fin
 
-       
+    Returns:
+        html.Div: Composant avec l'histogramme
+    """
+    # filtrer les données pour la période sélectionnée
+    data_filtered = data_global[(data_global['Start Year'] >= start_year) & (data_global['Start Year'] <= end_year)]
+    
+    # Compter les tempêtes pour la période sélectionnée
+    tempetes_periode = pd.Series(0, index=TOUS_LES_PAYS)  # Initialiser à 0 pour tous les pays
+    counts = data_filtered['Country'].value_counts()
+    tempetes_periode.update(counts)  # Mettre à jour avec les valeurs réelles
+    
     fig = go.Figure(data=[go.Bar(
-            x=tempetes_par_annee.index,  # années
-            y=tempetes_par_annee.values,  # nombre de catastrophes par année
-            marker=dict(color='blue')  
-        )])
-
-       
+        x=TOUS_LES_PAYS,
+        y=tempetes_periode.values,
+        marker_color='blue'
+    )])
+    
     fig.update_layout(
-            title=f"Nombre de Tempêtes de {start_year} à {end_year}",
-            xaxis_title="Année",
-            yaxis_title="Nombre de Tempêtes",
-            bargap=0.1  # espace entre les barres
-        )
+        title=f"Nombre de Tempêtes par Pays de {start_year} à {end_year}",
+        xaxis_title="Pays",
+        yaxis_title="Nombre de Tempêtes",
+        xaxis_tickangle=45,
+        yaxis=dict(
+            range=[0, MAX_TEMPETES_GLOBAL],
+            fixedrange=True
+        ),
+        xaxis=dict(
+            fixedrange=True,
+            categoryorder='array',
+            categoryarray=TOUS_LES_PAYS
+        ),
+        height=1000,
+        width=900,
+        autosize=False
+    )
 
-        #retourner l'objet Dash pour afficher le graphique
     return html.Div([
             dcc.Graph(
                 figure=fig,
-                style={'height': '600px'}
+                config={'displayModeBar': False}
             )
         ])
 

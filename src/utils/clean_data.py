@@ -2,6 +2,19 @@ import os
 import pandas as pd
 
 def clean_data(input_file):
+    """
+    Nettoie les données du fichier d'entrée.
+
+    Args:
+        input_file (str): Chemin du fichier CSV à nettoyer
+
+    Raises:
+        KeyError: Si des colonnes obligatoires sont manquantes
+        Exception: Pour toute autre erreur de traitement
+
+    Returns:
+        None: Sauvegarde le fichier nettoyé dans data/cleaned/
+    """
     print("Le nettoyage commence...")
 
     try:
