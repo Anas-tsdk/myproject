@@ -2,7 +2,7 @@
 
 APP_PORT = 8051
 APP_HOST = "127.0.0.1"
-APP_DEBUG = True
+APP_DEBUG = False
 APP_URL = f"http://{APP_HOST}:{APP_PORT}/"
 
 # Chemin du fichier
