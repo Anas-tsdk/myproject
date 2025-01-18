@@ -5,6 +5,8 @@
 
 Pour déployer et utiliser le dashboard il faut lancer cette commande dans le terminal dans le dossier myproject:
 
+Sur Windows :
+
 ```sh
 venv\Scripts\activate.bat
 pip install -r requirements.txt
@@ -13,6 +15,17 @@ python main.py
 ou :
 ```sh
 apprun.bat
+```
+Sur macOS/Linux :
+
+```sh
+source venv/bin/activate 
+pip install -r requirements.txt  
+python main.py  
+```
+ou :
+```sh
+./apprun.sh
 ```
 
 ## Data
