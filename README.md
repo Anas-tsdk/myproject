@@ -3,10 +3,16 @@
 
 ## User Guide
 
-Pour déployer et utiliser le dashboard il faut lancer cette commande dans le terminal :
+Pour déployer et utiliser le dashboard il faut lancer cette commande dans le terminal dans le dossier myproject:
 
 ```sh
+venv\Scripts\activate.bat
+pip install -r requirements.txt
 python main.py
+```
+ou :
+```sh
+apprun.bat
 ```
 
 ## Data
