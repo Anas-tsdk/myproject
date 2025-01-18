@@ -106,7 +106,7 @@ def afficher_map(colonne):
     # Cas spécifiques pour les colonnes
     if colonne == "Total Affected":
         affected_counts = (
-            data.groupby("Country")[colonne].sum().reset_index(name="Total")
+            data.groupby("Country")[colonne].sum().reset_index(level=0,name="Total")
         )
         data = data.merge(affected_counts, on="Country", how="left")
         min_value = affected_counts["Total"].min()
