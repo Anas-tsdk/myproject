@@ -3,7 +3,7 @@ import plotly.express as px
 from dash import html, dcc
 
 
-def affiche_nuages():
+def affiche_nuages()-> html.Div:
     """
     Crée un nuage de points croisant impact humain et dommages financiers.
 

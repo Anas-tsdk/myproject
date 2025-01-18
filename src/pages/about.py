@@ -1,7 +1,7 @@
 from dash import html
 
 
-def about_page():
+def about_page()-> html.Div:
     """
     Crée la page 'À propos' avec sections structurées et styles définis.
 

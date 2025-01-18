@@ -3,7 +3,7 @@
 from dash import html
 
 
-def footer():
+def footer()-> html.Div:
     """
     Crée le footer avec copyright et contacts.
 

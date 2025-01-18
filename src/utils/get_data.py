@@ -4,7 +4,7 @@ from io import BytesIO
 import os
 
 
-def get_data():
+def get_data()-> str:
     """
     Télécharge et convertit les données Excel en CSV.
 

@@ -5,8 +5,7 @@ import requests
 import os
 import json
 
-
-def afficher_map(colonne):
+def afficher_map(colonne: str)-> html.Iframe:
     """
     Crée une carte géographique interactive affichant des données spécifiques.
 
@@ -18,7 +17,7 @@ def afficher_map(colonne):
     """
 
     # Charger les données
-    data_file = "data/cleaned/cleaned_data.csv"
+    data_file:str = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_file)
     print("Colonnes du fichier CSV :")
     print(data.columns)

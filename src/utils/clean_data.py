@@ -1,8 +1,8 @@
 import os
 import pandas as pd
+from typing import Dict
 
-
-def clean_data(input_file):
+def clean_data(input_file: str) -> pd.DataFrame:
     """
     Nettoie les données du fichier d'entrée.
 
@@ -34,7 +34,7 @@ def clean_data(input_file):
         os.makedirs(output_dir, exist_ok=True)  # Crée le dossier si nécessaire
 
         # Renommer la colonne spécifiée (si nécessaire)
-        column_mapping = {
+        column_mapping: Dict[str, str] = {
             # Exemple de renaming si nécessaire
             # 'ancien_nom': 'nouveau_nom'
         }

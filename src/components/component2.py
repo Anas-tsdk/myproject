@@ -11,7 +11,7 @@ TOUS_LES_PAYS = sorted(data_global["Country"].unique())
 MAX_TEMPETES_GLOBAL = data_global["Country"].value_counts().max()
 
 
-def afficher_histogramme(start_year, end_year):
+def afficher_histogramme(start_year: int, end_year: int) -> html.Div:
     """
     Crée un histogramme des tempêtes par pays.
 

@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from dash import html, dcc
 
 
-def afficher_camembert():
+def afficher_camembert()-> html.Div:
     """
     Crée un graphique en camembert des types de catastrophes.
 

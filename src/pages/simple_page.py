@@ -3,7 +3,7 @@ from src.components.component4 import affiche_nuages
 from src.components.component3 import afficher_camembert
 
 
-def simple_page():
+def simple_page() -> html.Div:
     """
     Crée la page des visualisations avec composants interactifs.
 

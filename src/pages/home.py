@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 
-def home_page():
+def home_page()-> html.Div:
     """
     Crée la page d'accueil avec description.
 

@@ -14,6 +14,7 @@ from src.components.component2 import afficher_histogramme
 import importlib
 import subprocess
 import sys
+from typing import List 
 import webbrowser
 import threading
 import time
@@ -28,7 +29,7 @@ from config import (
 )
 
 
-def install_requirements():
+def install_requirements()-> None:
     """Vérifie et installe les dépendances manquantes"""
     print("Vérification des dépendances...")
     try:
@@ -79,7 +80,7 @@ if __name__ == "__main__":
             Input("url", "pathname")
         ],  # Vous n'avez plus besoin d'Input pour le bouton radio ici
     )
-    def update_page_and_map(pathname):
+    def update_page_and_map(pathname: str) -> html.Div:
         """
         Met à jour le contenu de la page selon l'URL.
 
@@ -102,7 +103,7 @@ if __name__ == "__main__":
         Output("carte-container", "children"),
         [Input("data-toggle", "value")],  # Prendre la valeur du bouton radio
     )
-    def update_map(colonne):
+    def update_map(colonne: str) -> html.Div:
         """
         Met à jour la carte selon la colonne sélectionnée.
 
@@ -120,7 +121,7 @@ if __name__ == "__main__":
         Output("histogram-container", "children"),
         [Input("date-slider", "value")],  # Valeur du curseur
     )
-    def update_histogram(value):
+    def update_histogram(value: List[int]) -> html.Div:
         """
          Met à jour l'histogramme selon la période sélectionnée.
 
@@ -138,7 +139,7 @@ if __name__ == "__main__":
         # Met a jour avec les valeurs selectionnées
         return afficher_histogramme(start_year, end_year)
 
-    def open_browser():
+    def open_browser()-> None:
         """
         Ouvre le navigateur web vers l'application après un délai.
         """

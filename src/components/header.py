@@ -3,7 +3,7 @@
 from dash import html
 
 
-def header():
+def header()-> html.Div:
     """
     Crée l'en-tête du dashboard.
 
