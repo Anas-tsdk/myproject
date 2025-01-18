@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 def home_page():
-    """et
+    """
     Crée la page d'accueil avec description.
 
     Returns:

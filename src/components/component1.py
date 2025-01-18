@@ -7,6 +7,16 @@ import json
 import numpy as np
 
 def afficher_map(colonne):
+    """
+    Crée une carte géographique interactive affichant des données spécifiques.
+
+    Args:
+        colonne (str): Le nom de la colonne dans les données qui contient les informations à visualiser sur la carte.
+    
+    Returns:
+        html.Iframe: Un composant HTML contenant la carte générée sous forme d'iframe.
+    """
+
     # Charger les données
     data_file = "data/cleaned/cleaned_data.csv"
     data = pd.read_csv(data_file)

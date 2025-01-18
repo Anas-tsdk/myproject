@@ -97,7 +97,8 @@ def about_page():
         html.Div([
             "Au cours du développement, nous avons fait face à plusieurs défis:",
             html.Ul([
-                html.Li("La création et l'optimisation de la carte interactive a été le plus compliqué"),
+                html.Li("La création et l'optimisation de la carte interactive ont été les étapes les plus complexes. En effet, la carte géographique est liée à un fichier JSON qui sert à générer la carte choroplèthe. Cette carte choroplèthe utilise les données du fichier CSV pour afficher les couleurs correspondant à chaque pays. J'avais initialement associé les noms des pays du fichier CSV avec ceux du fichier JSON. Cependant, cela a causé un problème, car certains pays apparaissaient en noir, sans couleur assignée, et nous ne comprenions pas pourquoi. Après quelques recherches, nous avons découvert que certains pays, après le nettoyage des données, n'avaient plus de valeurs, et que les noms dans le fichier JSON ne correspondaient pas exactement à ceux du CSV. Pour résoudre ce problème, j'ai développé un script permettant de remplacer les noms dans le fichier JSON par ceux présents dans le fichier CSV."),
+                html.Li("Le deuxième problème rencontré sur la carte géographique concernait l'échelle. Par exemple, pour les dégâts, la plupart des données se situaient entre la valeur minimale et le premier quart, ce qui ne permettait pas de visualiser suffisamment les variations de couleurs. Pour remédier à cela, j'ai réduit les intervalles de l'échelle, mais cela a eu pour effet de compresser les couleurs dans l'affichage de l'échelle, ce qui a rendu les légendes moins visibles."),
                 html.Li([
                     "Lors de nos recherches, nous avons découvert ",
                     html.A("ce git", href="https://github.com/em-dat/", target="_blank", style=link_style),
