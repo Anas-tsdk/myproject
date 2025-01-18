@@ -2,6 +2,7 @@
 
 from dash import html
 
+
 def footer():
     """
     Crée le footer avec copyright et contacts.
@@ -13,7 +14,7 @@ def footer():
         children=[
             html.Div(
                 children="\u00a9 2024 - Tempêtes et Santé Publique. ines.robin@edu.esiee.fr - anastasia.tsundyk@edu.esiee.fr",
-                style={'text-align': 'center', 'font-size': '12px', 'color': 'gray'}
+                style={"text-align": "center", "font-size": "12px", "color": "gray"},
             )
         ]
     )
