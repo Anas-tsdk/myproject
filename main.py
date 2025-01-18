@@ -135,7 +135,7 @@ if __name__ == "__main__":
             start_year,
             end_year,
         ) = value  # Dash fournit un seul argument sous la forme d'une liste
-        # met a jour avce les valeurs selectionnées
+        # Met a jour avec les valeurs selectionnées
         return afficher_histogramme(start_year, end_year)
 
     def open_browser():

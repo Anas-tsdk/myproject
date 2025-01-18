@@ -18,22 +18,22 @@ def afficher_camembert():
         "Geophysical",
         "Hydrological",
         "Meteorological",
-    ]  # fitre les trois types de catastrophes
+    ]  # Fitre les trois types de catastrophes
     data_filtered = data[data["Disaster Subgroup"].isin(categories)]
 
     count_by_type = data_filtered[
         "Disaster Subgroup"
-    ].value_counts()  # calcul le nombre de catastrophe pour chaque categorie
+    ].value_counts()  # Calcul le nombre de catastrophe pour chaque categorie
 
-    # camembert avec Plotly
+    # Camembert avec Plotly
     colors = ["#2C3E50", "#3498DB", "#1ABC9C"]
 
     fig = go.Figure(
         data=[
             go.Pie(
-                labels=count_by_type.index,  # types de catastrophes
-                values=count_by_type.values,  # nombre
-                hole=0.3,  # pour avoir un dognut
+                labels=count_by_type.index,  # Types de catastrophes
+                values=count_by_type.values,  # Nombre
+                hole=0.3,  # Pour avoir un dognut
                 marker=dict(colors=colors),  # Appliquer les couleurs
                 textinfo="percent",  # Afficher pourcentages
             )

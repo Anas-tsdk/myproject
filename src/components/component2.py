@@ -6,7 +6,7 @@ data_file = "data/cleaned/cleaned_data.csv"
 data_global = pd.read_csv(data_file)
 data_global["Start Year"] = pd.to_numeric(data_global["Start Year"], errors="coerce")
 
-# définir les échelles fixes
+# Définir les échelles fixes
 TOUS_LES_PAYS = sorted(data_global["Country"].unique())
 MAX_TEMPETES_GLOBAL = data_global["Country"].value_counts().max()
 
@@ -22,7 +22,7 @@ def afficher_histogramme(start_year, end_year):
     Returns:
         html.Div: Composant avec l'histogramme
     """
-    # filtrer les données pour la période sélectionnée
+    # Filtrer les données pour la période sélectionnée
     data_filtered = data_global[
         (data_global["Start Year"] >= start_year)
         & (data_global["Start Year"] <= end_year)

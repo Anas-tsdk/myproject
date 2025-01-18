@@ -46,7 +46,7 @@ def afficher_map(colonne):
     data[colonne] = pd.to_numeric(data[colonne], errors="coerce")
     data[colonne] = data[colonne].fillna(0)  # Remplacer NaN par 0
 
-    # Ajuster les bins (seuils) en fonction des données
+    # Ajuster les bins en fonction des données
     min_value = data[colonne].min()
     max_value = data[colonne].max()
 
@@ -94,7 +94,7 @@ def afficher_map(colonne):
     # Supprimer les pays qui ne peuvent pas être mappés
     data = data[data["Country"].notna()]
 
-    # Adapter les seuils (bins) en fonction de la plage des valeurs
+    # Adapter les seuils en fonction de la plage des valeurs
     threshold_scale = [
         min_value,
         max_value / 4,
